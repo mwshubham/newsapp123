@@ -1,10 +1,4 @@
-package com.example.newsapps.Api
-
-import com.example.newsapps.Api.Constants.Companion.BASE_URL
-import okhttp3.OkHttpClient
-
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+package com.example.newsapps.api
 
 class RectrofitInstance {
 //    companion object{
