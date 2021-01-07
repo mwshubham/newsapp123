@@ -5,17 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.newsapps.Api.NewsApi
-import com.example.newsapps.Api.NewsService
 import com.example.newsapps.R
-import com.example.newsapps.mvvmnewsapp.NewsRespones
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class HomeFragment : Fragment() {
@@ -34,28 +26,15 @@ class HomeFragment : Fragment() {
 //        homeViewModel.text.observe(viewLifecycleOwner, Observer {
 //            textView.text = it
 //        })
-        getnews();
+        Log.v(TAG, "Calling getNews() ${Thread.currentThread().name}")
+        homeViewModel.getNews()
+        Log.v(TAG, "Calling FINAL ${Thread.currentThread().name}")
         return root
     }
-    private fun getnews() {
-        val news = NewsService.newsInstance.getbreakingnews("", "")
-//        news.enqueue(object : Callback<NewsRespones> {
-//            override fun onFailure(call: Call<NewsRespones>, t: Throwable) {
-//                Log.d("news", "error in fatching news", t)
-//            }
-//
-//            override fun onResponse(call: Call<NewsRespones>, response: Response<NewsRespones>) {
-//                val news = response.body()
-//                if (news != null) {
-//                    Log.d("news", news.toString())
-//                }
-//            }
-//
-//
-//        })
+
+    companion object {
+        const val TAG = "HomeFragment"
     }
-
-
 }
 
 
