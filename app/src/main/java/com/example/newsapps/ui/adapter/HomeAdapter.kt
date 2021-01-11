@@ -12,13 +12,13 @@ import com.example.newsapps.R
 import com.example.newsapps.mvvmnewsapp.Article
 
 class HomeAdapter(
-    private val context: Context,
-   private var articles: List<Article>
+        private val context: Context,
+        private var articles: List<Article>
 ) : RecyclerView.Adapter<HomeAdapter.ArticleViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
         val view =
-            LayoutInflater.from(context).inflate(R.layout.fragmenthome_adapter, parent, false)
+                LayoutInflater.from(context).inflate(R.layout.fragmenthome_adapter, parent, false)
         return ArticleViewHolder(view)
     }
 
@@ -36,7 +36,7 @@ class HomeAdapter(
     }
 
     class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val newImage:ImageView = itemView.findViewById(R.id.img)
+        val newImage: ImageView = itemView.findViewById(R.id.img)
         var shadow_boottom = itemView.findViewById<ImageView>(R.id.shadow_boottom)
         var tv_test = itemView.findViewById<TextView>(R.id.tv_test)
         var publiesdat = itemView.findViewById<TextView>(R.id.publiesdat)
@@ -44,12 +44,10 @@ class HomeAdapter(
         var desc = itemView.findViewById<TextView>(R.id.desc)
         var source = itemView.findViewById<TextView>(R.id.source)
         var time = itemView.findViewById<TextView>(R.id.time)
-
-
     }
-    fun setdata(articles: List<Article>){
+
+    fun setdata(articles: List<Article>) {
         this.articles = articles
         notifyDataSetChanged()
-
     }
 }
