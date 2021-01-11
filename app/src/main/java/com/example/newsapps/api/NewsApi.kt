@@ -29,4 +29,19 @@ object NewsService {
             .build()
         newsInstance = retrofit.create(NewsApi::class.java)
     }
+
+
+
 }
+//object NewsService {
+//    private val retrofit by lazy {
+//        Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create())
+//            .build()
+//
+//    }
+//  val newsInstance:NewsApi by lazy {
+//      retrofit.create(NewsApi::class.java)
+//  }
+//
+//
+//}

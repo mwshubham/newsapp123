@@ -12,10 +12,9 @@ import com.example.newsapps.R
 import com.example.newsapps.mvvmnewsapp.Article
 
 class HomeAdapter(
-    val context: Context,
-    val articles: List<Article>
-) :
-    RecyclerView.Adapter<HomeAdapter.ArticleViewHolder>() {
+    private val context: Context,
+   private var articles: List<Article>
+) : RecyclerView.Adapter<HomeAdapter.ArticleViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
         val view =
@@ -31,12 +30,13 @@ class HomeAdapter(
         val articles = articles[position]
         holder.title.text = articles.title
         holder.desc.text = articles.description
-        holder.title.text = articles.title
+        holder.source.text = articles.source.name
         Glide.with(context).load(articles.urlToImage).into(holder.newImage)
+
     }
 
     class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var newImage = itemView.findViewById<ImageView>(R.id.img)
+        val newImage:ImageView = itemView.findViewById(R.id.img)
         var shadow_boottom = itemView.findViewById<ImageView>(R.id.shadow_boottom)
         var tv_test = itemView.findViewById<TextView>(R.id.tv_test)
         var publiesdat = itemView.findViewById<TextView>(R.id.publiesdat)
@@ -44,6 +44,12 @@ class HomeAdapter(
         var desc = itemView.findViewById<TextView>(R.id.desc)
         var source = itemView.findViewById<TextView>(R.id.source)
         var time = itemView.findViewById<TextView>(R.id.time)
-    }
 
+
+    }
+    fun setdata(articles: List<Article>){
+        this.articles = articles
+        notifyDataSetChanged()
+
+    }
 }
