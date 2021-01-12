@@ -32,7 +32,7 @@ class HomeAdapter(
         val articles = articles[position]
         holder.title.text = articles.title
         holder.desc.text = articles.description
-        holder.source.text = articles.source.name
+        holder.source.text = articles.source?.name
         Glide.with(context).load(articles.urlToImage).into(holder.newImage)
     }
 
@@ -44,12 +44,12 @@ class HomeAdapter(
       init {
           itemView.setOnClickListener {
               listener.onItemClicklistener(adapterPosition)
-              val  intent = Intent(context, DetailsAcitivity::class.java)
-              intent.putExtra("description",articles.get(adapterPosition).description)
-              intent.putExtra("urlToImage",articles.get(adapterPosition).urlToImage)
-              intent.putExtra("content",articles.get(adapterPosition).content)
-              intent.putExtra("url",articles.get(adapterPosition).url)
-              context. startActivity(intent)
+              val intent = Intent(context, DetailsAcitivity::class.java)
+              intent.putExtra("description", articles[adapterPosition].description)
+              intent.putExtra("urlToImage", articles[adapterPosition].urlToImage)
+              intent.putExtra("content", articles[adapterPosition].content)
+              intent.putExtra("url", articles[adapterPosition].url)
+              context.startActivity(intent)
           }
       }
     }

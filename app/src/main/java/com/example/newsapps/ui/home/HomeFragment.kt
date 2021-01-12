@@ -1,6 +1,5 @@
 package com.example.newsapps.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,14 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.newsapps.DetailsAcitivity
 import com.example.newsapps.R
 import com.example.newsapps.api.NewsRepository
-import com.example.newsapps.mvvmnewsapp.Article
+import com.example.newsapps.db.ArticleDatabase
 import com.example.newsapps.ui.adapter.HomeAdapter
 import com.example.newsapps.viewmodel.NewsViewModel
 import com.example.newsapps.viewmodel.NewsViewModelFactory
-import java.text.ParsePosition
 import java.util.*
 
 class HomeFragment : Fragment(),HomeAdapter.Listener {
@@ -35,12 +32,14 @@ class HomeFragment : Fragment(),HomeAdapter.Listener {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         rv_recyle = root.findViewById(R.id.rv_recyle)
         homeRecycleVew()
-        val newsRepository = NewsRepository()
+
+        val newsRepository = NewsRepository(ArticleDatabase.getInstance(requireContext().applicationContext).getArticleDao())
         val newsViewModelFactory = NewsViewModelFactory(newsRepository)
         newsViewModel = ViewModelProvider(this, newsViewModelFactory)[NewsViewModel::class.java]
         Log.v(TAG, "Calling getNews() ${Thread.currentThread().name}")
         newsViewModel.getNews()
         Log.v(TAG, "Calling FINAL ${Thread.currentThread().name}")
+        @Suppress("COMPATIBILITY_WARNING")
         newsViewModel.newMutableLiveData.observe(viewLifecycleOwner, {
             it?.let {
                 homeAdapter.setdata(it)

@@ -7,12 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.newsapps.api.NewsRepository
 import com.example.newsapps.db.ArticleDao
 import com.example.newsapps.mvvmnewsapp.Article
-import com.example.newsapps.mvvmnewsapp.NewsResponses
 import kotlinx.coroutines.launch
 
 class NewsViewModel(private val newsRepository: NewsRepository) : ViewModel(){
 
-    lateinit var articleDao: ArticleDao
 
     val newMutableLiveData: MutableLiveData<List<Article>> = MutableLiveData()
 
@@ -27,7 +25,7 @@ class NewsViewModel(private val newsRepository: NewsRepository) : ViewModel(){
                 Log.d(TAG, "getNews : ${response.body()}")
                 if (response.isSuccessful && response.body() != null) {
                     newMutableLiveData.value = response.body()?.articles
-                    response.body()?.articles?.let { articleDao.insetAll(it) }
+                    response.body()?.articles?.let { newsRepository.insertAll(it) }
                 }
             } catch (e: Exception) {
                 Log.d(TAG, "getNews : ${e.message}")

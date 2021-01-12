@@ -11,8 +11,11 @@ import com.example.newsapps.mvvmnewsapp.Article
 @Dao
 interface ArticleDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insetAll(articles: List<Article>):Long
+    suspend fun insertAll(articles: List<Article>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(articles: Article): Long
 
     @Query("SELECT * FROM articles")
-    fun getArticleById():LiveData<List<Article>>
+    fun getArticleById(): LiveData<List<Article>>
 }

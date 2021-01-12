@@ -5,17 +5,14 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapps.api.NewsRepository
+import com.example.newsapps.db.ArticleDatabase
 import com.example.newsapps.mvvmnewsapp.Article
-import com.example.newsapps.mvvmnewsapp.NewsResponses
 import com.example.newsapps.ui.adapter.HomeAdapter
 import com.example.newsapps.ui.home.HomeFragment
 import com.example.newsapps.viewmodel.NewsViewModel
 import com.example.newsapps.viewmodel.NewsViewModelFactory
-import retrofit2.Response
-import java.util.ArrayList
 
 class HomeActivity : AppCompatActivity() {
     private  lateinit var rv_recyle: RecyclerView
@@ -26,9 +23,9 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_home)
 
-        val newsRepository= NewsRepository()
-        val newsViewModelFactory= NewsViewModelFactory(newsRepository)
-        newsViewModel= ViewModelProvider(this,newsViewModelFactory)[NewsViewModel::class.java]
+        val newsRepository = NewsRepository(ArticleDatabase.getInstance(applicationContext).getArticleDao())
+        val newsViewModelFactory = NewsViewModelFactory(newsRepository)
+        newsViewModel = ViewModelProvider(this, newsViewModelFactory)[NewsViewModel::class.java]
         Log.v(HomeFragment.TAG, "Calling getNews() ${Thread.currentThread().name}")
         //homeRecycleVew()
         newsViewModel.getNews()
