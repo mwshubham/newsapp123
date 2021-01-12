@@ -4,53 +4,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="11dp"
-        android:layout_marginRight="11dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginBottom="7dp"
-        app:cardElevation="@dimen/cardview_default_elevation"
-        app:cardCornerRadius="10dp"
         tools:ignore="MissingConstraints">
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/img_details"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            tools:src="@tools:sample/backgrounds/scenic"
+            android:transitionName="img"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tv_deatils_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints">
-            <ImageView
-                android:id="@+id/img"
-                android:scaleType="centerCrop"
-                android:transitionName="img"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                tools:ignore="MissingConstraints" />
-     <TextView
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:fontFamily="sans-serif-light"
-         android:textColor="@color/colorTextTitle"
-         android:textStyle="bold"
-         android:layout_marginLeft="16dp"
-         android:layout_marginRight="16dp"
-         android:text="titvhgygyggygle"
-         android:textSize="17sp"
-         android:layout_marginTop="10dp"
-         android:layout_below="@+id/img"
-         android:id="@+id/title"/>
+            android:layout_below="@+id/img_details"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="14dp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/colorTextTitle"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="@string/home_title" />
 
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="20dp"
-          android:layout_below="@+id/title"
-          android:layout_marginLeft="16dp"
-          android:textColor="@color/black"
-          android:layout_marginRight="116dp"
-          android:layout_marginTop="5dp"
-          android:text="desbjhc"
-          android:id="@+id/desc"/>
+        <TextView
+            android:id="@+id/tv_deatils_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_deatils_desc"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="14dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            tools:text="@string/home_description" />
+        <TextView
+            android:id="@+id/tv_detail_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_deatils_desc"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="14dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            tools:text="@string/home_description" />
+
+
     </RelativeLayout>
-    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

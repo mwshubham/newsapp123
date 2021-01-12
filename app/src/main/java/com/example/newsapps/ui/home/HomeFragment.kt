@@ -1,5 +1,6 @@
 package com.example.newsapps.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,16 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.newsapps.DetailsAcitivity
 import com.example.newsapps.R
 import com.example.newsapps.api.NewsRepository
+import com.example.newsapps.mvvmnewsapp.Article
 import com.example.newsapps.ui.adapter.HomeAdapter
 import com.example.newsapps.viewmodel.NewsViewModel
 import com.example.newsapps.viewmodel.NewsViewModelFactory
+import java.text.ParsePosition
 import java.util.*
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(),HomeAdapter.Listener {
     private lateinit var rv_recyle: RecyclerView
     private lateinit var homeAdapter: HomeAdapter
     private lateinit var newsViewModel: NewsViewModel
@@ -49,13 +54,19 @@ class HomeFragment : Fragment() {
     }
 
     private fun homeRecycleVew() {
-        homeAdapter = HomeAdapter(requireContext(), ArrayList())
+        homeAdapter = HomeAdapter(requireContext(), ArrayList(),this)
         rv_recyle.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(activity)
             adapter = homeAdapter
         }
     }
+
+    override fun onItemClicklistener(position: Int) {
+
+
+    }
+
 }
 
 

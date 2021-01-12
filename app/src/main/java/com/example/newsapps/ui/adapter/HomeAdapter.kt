@@ -1,6 +1,7 @@
 package com.example.newsapps.ui.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,17 +9,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.newsapps.DetailsAcitivity
 import com.example.newsapps.R
 import com.example.newsapps.mvvmnewsapp.Article
 
 class HomeAdapter(
         private val context: Context,
-        private var articles: List<Article>
+        private var articles: List<Article>,private val listener: Listener
 ) : RecyclerView.Adapter<HomeAdapter.ArticleViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
         val view =
-                LayoutInflater.from(context).inflate(R.layout.fragmenthome_adapter, parent, false)
+                LayoutInflater.from(context).inflate(R.layout.item_home_adapter, parent, false)
         return ArticleViewHolder(view)
     }
 
@@ -32,22 +34,33 @@ class HomeAdapter(
         holder.desc.text = articles.description
         holder.source.text = articles.source.name
         Glide.with(context).load(articles.urlToImage).into(holder.newImage)
-
     }
 
-    class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+  inner  class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val newImage: ImageView = itemView.findViewById(R.id.img)
-        var shadow_boottom = itemView.findViewById<ImageView>(R.id.shadow_boottom)
-        var tv_test = itemView.findViewById<TextView>(R.id.tv_test)
-        var publiesdat = itemView.findViewById<TextView>(R.id.publiesdat)
         var title = itemView.findViewById<TextView>(R.id.title)
         var desc = itemView.findViewById<TextView>(R.id.desc)
         var source = itemView.findViewById<TextView>(R.id.source)
-        var time = itemView.findViewById<TextView>(R.id.time)
+      init {
+          itemView.setOnClickListener {
+              listener.onItemClicklistener(adapterPosition)
+              val  intent = Intent(context, DetailsAcitivity::class.java)
+              intent.putExtra("description",articles.get(adapterPosition).description)
+              intent.putExtra("urlToImage",articles.get(adapterPosition).urlToImage)
+              intent.putExtra("content",articles.get(adapterPosition).content)
+              intent.putExtra("url",articles.get(adapterPosition).url)
+              context. startActivity(intent)
+          }
+      }
     }
 
     fun setdata(articles: List<Article>) {
         this.articles = articles
         notifyDataSetChanged()
+    }
+
+    interface  Listener{
+        fun onItemClicklistener(position:Int)
+
     }
 }

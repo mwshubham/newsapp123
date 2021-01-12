@@ -4,6 +4,8 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">BookMark</string>
     <string name="title_notifications">Notifications</string>
-    <string name="title_preeti">preeti</string>
-    <string name="title_verma">verma</string>
+    <string name="home_title">title</string>
+
+    <string name="home_description">description</string>
+
 </resources>

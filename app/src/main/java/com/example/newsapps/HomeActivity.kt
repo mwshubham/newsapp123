@@ -30,23 +30,23 @@ class HomeActivity : AppCompatActivity() {
         val newsViewModelFactory= NewsViewModelFactory(newsRepository)
         newsViewModel= ViewModelProvider(this,newsViewModelFactory)[NewsViewModel::class.java]
         Log.v(HomeFragment.TAG, "Calling getNews() ${Thread.currentThread().name}")
-        homeRecycleVew()
+        //homeRecycleVew()
         newsViewModel.getNews()
 
         Log.v(HomeFragment.TAG, "Calling FINAL ${Thread.currentThread().name}")
         newsViewModel.newMutableLiveData.observe(this, Observer {
-            homeAdapter.setdata(it as MutableList<Article>)
+            homeAdapter.setdata(it as List<Article>)
         })
     }
-    private fun homeRecycleVew(){
-        rv_recyle = findViewById(R.id.rv_recyle)
-        homeAdapter= HomeAdapter(this, ArrayList())
-        rv_recyle.apply {
-            setHasFixedSize(true)
-            layoutManager= LinearLayoutManager(this@HomeActivity)
-            adapter=homeAdapter
-
-        }
-
-    }
+//    private fun homeRecycleVew(){
+//        rv_recyle = findViewById(R.id.rv_recyle)
+//        homeAdapter= HomeAdapter(this, ArrayList())
+//        rv_recyle.apply {
+//            setHasFixedSize(true)
+//            layoutManager= LinearLayoutManager(this@HomeActivity)
+//            adapter=homeAdapter
+//
+//        }
+//
+//    }
 }

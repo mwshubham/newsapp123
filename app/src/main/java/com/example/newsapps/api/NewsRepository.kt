@@ -6,6 +6,7 @@ import retrofit2.Response
 /**
  * It provide news from server or from database.
  */
-class NewsRepository {
+class NewsRepository() {
     suspend fun getBreakingNews(): Response<NewsResponses> = NewsService.newsInstance.getBreakingNews(countryCode = "in")
+
 }
