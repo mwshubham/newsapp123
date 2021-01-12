@@ -11,7 +11,6 @@ import com.example.newsapps.mvvmnewsapp.Article
 @TypeConverters(Converters::class)
 abstract class ArticleDatabase : RoomDatabase(){
     abstract fun getArticleDao(): ArticleDao
-
     companion object {
         @Volatile
         //other threat can immediately see the when thread changes this instance
